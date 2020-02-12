@@ -102,7 +102,7 @@ def checkout(cart, coupons)
 # consolidate_cart[:price] * :num
   consolidated_cart = consolidate_cart(cart)
   couponed_cart = apply_coupons(consolidated_cart, coupons)
-  clearance_cart = apply_clearance()
+  clearance_cart = apply_clearance(couponed_cart, coupons)
 
   total = 0
   i = 0
