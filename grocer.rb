@@ -105,7 +105,7 @@ def checkout(cart, coupons)
     consolidate_cart(cart)
     i += 1
   end
-  
+
 end
 
 # Consult README for inputs and outputs
