@@ -58,12 +58,12 @@ def apply_coupons(cart, coupons)
     cart_item = find_item_by_name_in_collection(coupons[i][:item], cart) #should return name of item on the coupon
     # want to see if item exists in the cart that's why it's 2nd argument
     #check to see if itemw/ coupon exists in cart already
-    item_name_couponed = "#{coupons[i][:item]} W/COUPON"
+    item_name_couponed = "#{coupons[i][:item]} W/COUPON" # adds a new key, value pair to the cart hash called 'ITEM NAME W/COUPON'
     cart_item_couponed = find_item_by_name_in_collection(item_name_couponed, cart)
 
     if cart_item && cart_item[:count] >= coupons[i][:num] # amount of item within coupons
       if cart_item_couponed
-        cart_item_couponed[:count] += coupons[i][:num] # increase it by the number of items on our coupons
+        cart_item_couponed[:count] += coupons[i][:num] # increase it by the number of items on our coupons #TEST adds the coupon price and count number to the property hash of couponed item
         cart_item[:count] -= coupons[i][:num] # moves this out of cart_item into couponed so need to subtract it from there
       else
         cart_item_couponed = {
@@ -88,12 +88,12 @@ end
 def apply_clearance(cart)
   i = 0
   while i < cart.length
-    if cart[i][:clearance]
-      cart[i][:price]  = (cart[i][:price] - (cart[i][:price] * 0.20)).round(2)
+    if cart[i][:clearance] # iterates over the clearance key
+      cart[i][:price]  = (cart[i][:price] - (cart[i][:price] * 0.20)).round(2) # calculates clearance price
     end
     i += 1
   end
-  cart
+  cart # returns updated cart
 end
 
 
@@ -101,17 +101,17 @@ end
 def checkout(cart, coupons)
   consolidated_cart = consolidate_cart(cart) # calls on #consolidate_cart before calculating the total for one item
   couponed_cart = apply_coupons(consolidated_cart, coupons) # calls on #apply_coupons based on what's in coupons
-  final_cart = apply_clearance(couponed_cart)
+  final_cart = apply_clearance(couponed_cart) # calls on #consolidate_cart before calculating the total
 
   total = 0
 
   i = 0
   while i < final_cart.length
-    total += final_cart[i][:price] * final_cart[i][:count]
+    total += final_cart[i][:price] * final_cart[i][:count] # calculates total price * count
     i += 1
   end
   if total > 100
-    total -= (total * 0.10)
+    total -= (total * 0.10) # applies 10% discount
   end
   total
 end
