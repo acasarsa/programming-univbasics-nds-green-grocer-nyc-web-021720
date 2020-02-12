@@ -89,8 +89,8 @@ def apply_clearance(cart)
   i = 0
   while i < cart.length
     if cart[i][:clearance]
-      discounted = cart[i][:price]
-      discounted  = (discounted - (discounted * 0.20)).round(2)
+      price = cart[i][:price]
+      price  = (price - (price * 0.20)).round(2)
       binding.pry
     end
     i += 1
