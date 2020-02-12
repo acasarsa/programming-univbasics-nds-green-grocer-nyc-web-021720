@@ -58,22 +58,22 @@ def apply_coupons(cart, coupons)
     cart_item = find_item_by_name_in_collection(coupons[i][:item], cart) #should return name of item on the coupon
     # want to see if item exists in the cart that's why it's 2nd argument
     #check to see if itemw/ coupon exists in cart already
-    item_name_couponed = "#{coupons[i][:item]} W/COUPON" # adds a new key, value pair to the cart hash called 'ITEM NAME W/COUPON'
+    item_name_couponed = "#{coupons[i][:item]} W/COUPON" 
     cart_item_couponed = find_item_by_name_in_collection(item_name_couponed, cart)
 
     if cart_item && cart_item[:count] >= coupons[i][:num] # amount of item within coupons
-      if cart_item_couponed
-        cart_item_couponed[:count] += coupons[i][:num] # increase it by the number of items on our coupons #TEST adds the coupon price and count number to the property hash of couponed item
-        cart_item[:count] -= coupons[i][:num] # moves this out of cart_item into couponed so need to subtract it from there
+      if cart_item_couponed # increases coupons count when it already exists
+        cart_item_couponed[:count] += coupons[i][:num] # increase it by the number of items on our coupons 
+        cart_item[:count] -= coupons[i][:num] # moves this out of cart_item into couponed so need to subtract it from there 
       else
         cart_item_couponed = {
           :item => item_name_couponed,
-          :price => coupons[i][:cost] / coupons[i][:num],
-          :clearance => cart_item[:clearance],
-          :count => coupons[i][:num]
-        }
-        cart << cart_item_couponed
-        cart_item[:count] -= coupons[i][:num]
+          :price => coupons[i][:cost] / coupons[i][:num],  #TEST adds the coupon price to the property hash of couponed item
+          :clearance => cart_item[:clearance], 
+          :count => coupons[i][:num] #TEST adds the count number to the property hash of couponed item
+        } # adds a new key, value pair to the cart hash called 'ITEM NAME W/COUPON'
+        cart << cart_item_couponed #TEST  remembers if the item was on clearance
+        cart_item[:count] -= coupons[i][:num] #TEST removes the number of discounted items from the original item's count
       end
     end
 
