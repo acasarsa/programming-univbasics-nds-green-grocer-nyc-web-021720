@@ -86,11 +86,16 @@ end
 # rspec spec/grocer_spec.rb -e apply_coupons
 
 def apply_clearance(cart)
-  clearance_applied_item = consolidate_cart(cart)[i][:clearance]
-  if
+  i = 0
+  while i < cart.length
+    if cart[i][:clearance]
+      discounted = cart[i][:price]
+      discounted  = (discounted - (discounted * 0.20)).round(2)
+    end
 
-
+    i += 1
   end
+end
   # Consult README for inputs and outputs
   #
   # REMEMBER: This method **should** update cart
