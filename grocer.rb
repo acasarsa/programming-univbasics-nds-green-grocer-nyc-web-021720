@@ -99,12 +99,13 @@ end
 
 
 def checkout(cart, coupons)
+  final_cart = consolidate_cart(cart)
   i = 0
   while i < cart.length
     consolidate_cart(cart)
     i += 1
   end
-
+  
 end
 
 # Consult README for inputs and outputs
