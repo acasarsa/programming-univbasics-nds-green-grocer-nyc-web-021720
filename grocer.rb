@@ -106,7 +106,7 @@ def checkout(cart, coupons)
     total += final_cart[i][:price]
     i += 1
   end
-
+  final_cart
 end
 
 # Consult README for inputs and outputs
