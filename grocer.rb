@@ -99,7 +99,9 @@ end
 
 
 def checkout(cart, coupons)
-  final_cart = consolidate_cart(cart)
+# consolidate_cart[:price] * :num 
+  consolidated_cart = consolidate_cart(cart)
+  
   total = 0
   i = 0
   while i < cart.length
