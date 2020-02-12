@@ -91,7 +91,6 @@ def apply_clearance(cart)
     if cart[i][:clearance]
       price = cart[i][:price]
       price  = (price - (price * 0.20)).round(2)
-      binding.pry
     end
     i += 1
   end
