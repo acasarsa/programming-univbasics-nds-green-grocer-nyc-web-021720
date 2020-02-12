@@ -92,9 +92,9 @@ def apply_clearance(cart)
       discounted = cart[i][:price]
       discounted  = (discounted - (discounted * 0.20)).round(2)
     end
-
     i += 1
   end
+  cart
 end
   # Consult README for inputs and outputs
   #
